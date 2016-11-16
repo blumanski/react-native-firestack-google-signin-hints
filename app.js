@@ -79,8 +79,12 @@ class myapp extends Component {
       	this.setState({loading: true});
         GoogleSignin.signIn()
             .then((user) => {
-                this.setState({loading: false, user: user})
-                console.log(user)
+                if(user && user.idToken) {
+                    // log into firebase
+                    this.firebaseLogin(user)
+              	} else {
+                    this.setState({loading: false});
+                }
             })
             .catch((err) => {
                 console.log('WRONG SIGNIN', err)
