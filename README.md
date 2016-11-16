@@ -3,6 +3,7 @@
 Google Sign in with Firebase
 
 https://github.com/fullstackreact/react-native-firestack
+
 https://github.com/devfd/react-native-google-signin
 
 17/11/2016
