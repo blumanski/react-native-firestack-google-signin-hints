@@ -31,10 +31,19 @@ class myapp extends Component {
     firebaseLogin(user) {
         if(user.idToken) {
             FirebaseStack.auth.signInWithProvider('google', user.idToken).then((userFirebase) => {
-                  let userData = userFirebase.user
-                  if(userData) {
-                      userData.googleId = user.id
-                  }
+                    
+                let userData = null
+                // android comes back with a userFirebase.user
+                if(userFirebase.user) {
+                    userData = userFirebase.user
+                } else {
+                    // ios comes back straight with the userdata
+                    userData = userFirebase
+                }
+                
+                if(userData) {
+                    userData.googleId = user.id
+                }
 
                   this.setState({user: userData, loading: false})
 
